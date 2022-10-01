@@ -1,4 +1,8 @@
-export default {
+import bootstrap from './.nest/nest.js';
+
+const isDev = process.env.NODE_ENV === 'development';
+
+export default async () => ({
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'BoardLink',
@@ -13,6 +17,12 @@ export default {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
+
+  serverMiddleware: isDev
+    ? {}
+    : {
+        '/api': await bootstrap()
+      },
 
   srcDir: 'client/',
 
@@ -34,14 +44,17 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: 'http://localhost:4000/api'
+    baseURL: isDev ? 'http://localhost:4000/api' : 'http://localhost:3000/api'
   },
+
+  proxy: ['http://localhost:3001/socket.io'],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {}
-};
+});

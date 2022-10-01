@@ -7,7 +7,7 @@ import {
 import { Socket } from 'socket.io';
 import { MessagesService } from './messages.service';
 
-@WebSocketGateway()
+@WebSocketGateway(3001)
 export class MessagesGateway {
   constructor(private messagesService: MessagesService) {}
 

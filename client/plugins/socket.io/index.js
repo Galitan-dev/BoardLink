@@ -2,7 +2,11 @@ import { io } from 'socket.io-client';
 import Vue from 'vue';
 import mixin from './mixin';
 
-const socket = io('http://localhost:4000');
+const socket = io(
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:4000'
+    : 'http://localhost:3000'
+);
 
 export default (_, inject) => {
   inject('socket', socket);
