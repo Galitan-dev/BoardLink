@@ -5,9 +5,10 @@ import {
   WebSocketGateway
 } from '@nestjs/websockets';
 import { Socket } from 'socket.io';
+import env from '../../environment';
 import { MessagesService } from './messages.service';
 
-@WebSocketGateway(3001)
+@WebSocketGateway(env.websocketPort)
 export class MessagesGateway {
   constructor(private messagesService: MessagesService) {}
 
