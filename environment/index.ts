@@ -16,7 +16,6 @@ export interface Environment {
   serverPort?: number;
   websocketPort?: number;
   nuxtConfig: (backend: () => Promise<any>) => Promise<NuxtConfig> | NuxtConfig;
-  websocketUri: string;
 }
 
 const env = process.env.APP_ENV !== 'prod' ? DevEnvironment : ProdEnvironment;

@@ -1,4 +1,4 @@
-import env from './environment';
+import env from './.nest/environment';
 import backend from './.nest/server/nest';
 
 export default async () => ({

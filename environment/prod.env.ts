@@ -9,7 +9,7 @@ export default {
   nuxtConfig: async (backend) => ({
     proxy: ['http://localhost:4000/socket.io'],
     axios: {
-      baseURL: 'http://localhost:3000/api'
+      baseURL: 'http://localhost:' + clientPort + '/api'
     },
     serverMiddleware: {
       '/api': await backend()
@@ -18,6 +18,5 @@ export default {
       host: '0.0.0.0',
       port: clientPort
     }
-  }),
-  websocketUri: 'http://localhost:3000'
+  })
 } as Environment;

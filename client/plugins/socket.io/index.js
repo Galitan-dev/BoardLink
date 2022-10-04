@@ -1,9 +1,8 @@
 import { io } from 'socket.io-client';
 import Vue from 'vue';
-import env from '../../../environment';
 import mixin from './mixin';
 
-const socket = io(env.websocketUri);
+const socket = io();
 
 export default (_, inject) => {
   inject('socket', socket);
