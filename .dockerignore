@@ -1,0 +1,15 @@
+.editorconfig
+.eslint*
+.gitignore
+.prettierignore
+.prettierrc
+commitlint.config.js
+LICENSE
+README.md
+.github
+.husky
+.nest
+.nuxt
+.vscode
+Dockerfile
+.dockerignore

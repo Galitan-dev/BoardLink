@@ -1,4 +1,7 @@
-export default {
+import env from './.nest/environment';
+import backend from './.nest/server/nest';
+
+export default async () => ({
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'BoardLink',
@@ -20,7 +23,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: ['~plugins/socket.io'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -34,14 +37,12 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy'
   ],
 
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {
-    baseURL: 'http://localhost:4000/api'
-  },
-
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {}
-};
+  build: {},
+
+  ...(await env.nuxtConfig(backend))
+});
