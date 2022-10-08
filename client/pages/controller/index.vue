@@ -26,15 +26,20 @@ export default class Controller extends Vue {
   @SocketListener
   onLinkJoined(link: Link) {
     this.link = link;
-    this.$cookies.set('link', link);
+  }
+
+  @SocketListener
+  async onDestroy() {
+    await this.$router.push('/controller/link');
   }
 
   async mounted() {
-    const linkId: string =
-      this.$route.params.linkId || this.$cookies.get('linkId');
+    const linkId: string = this.$route.params.linkId;
 
     if (!linkId || !(await this.$axios.get('/links/validate?id=' + linkId)))
       return await this.$router.push('/controller/link');
+
+    window.history.replaceState(null, '', '/controller');
 
     await this.$socket.emit('join-link', linkId);
   }

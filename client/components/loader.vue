@@ -23,6 +23,8 @@ export default class Loader extends Vue {}
 </script>
 
 <style scoped lang="less">
+@import 'assets/css/unsafe.less';
+
 .loader {
   --background: linear-gradient(135deg, #de9e36, #deb841);
   --shadow: fade(#deb841, 28);
@@ -112,35 +114,10 @@ export default class Loader extends Vue {}
 
 .set-animations(@count: 5) when (@count > 1) {
   .set-animations((@count - 1));
+
   &:nth-child(@{count}) {
     --c: var(--page-fold);
     animation-name: e('page-@{count}');
-  }
-}
-
-.animations(@count: 5) when (@count > 1) {
-  .animations((@count - 1));
-  @delay: @count * 15 - 30;
-  @d1: 0% + @delay;
-  @d2: 20% + @delay;
-  @d3: 35% + @delay;
-  @d4: 50% + @delay;
-  @keyframes e('page-@{count}') {
-    @{d1} {
-      transform: rotateY(180deg);
-      opacity: 0;
-    }
-    @{d2} {
-      opacity: 1;
-    }
-    @{d3},
-    100% {
-      opacity: 0;
-    }
-    @{d4},
-    100% {
-      transform: rotateY(0deg);
-    }
   }
 }
 </style>

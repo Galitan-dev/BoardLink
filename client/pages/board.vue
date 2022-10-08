@@ -18,24 +18,25 @@ export default class Board extends Vue {
   private $socket!: Socket;
 
   async mounted() {
-    const link: Link | undefined = this.$cookies.get('link');
-
-    if (!link || !(await this.$axios.$get('/links/validate?id=' + link.id)))
-      return await this.$socket.emit('initialize-link');
-
-    this.link = link;
+    await this.$socket.emit('initialize-link');
   }
 
   @SocketListener
   onLinkInitialized(link: Link) {
     this.link = link;
-    this.$cookies.set('link', link);
+  }
+
+  @SocketListener
+  async onDestroy() {
+    this.link = {
+      initialized: false
+    } as Link;
+    await this.$socket.emit('initialize-link');
   }
 
   @SocketListener
   onLinkJoined(link: Link) {
     this.link = link;
-    this.$cookies.set('link', link);
   }
 
   data() {

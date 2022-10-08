@@ -36,24 +36,10 @@ export default async () => ({
         'client/pages/controller/index.vue'
       );
 
-      routes.push(
-        {
-          path: '/controller/:linkId',
-          component: ControllerComponent
-        },
-        {
-          path: '/c/:linkId',
-          component: ControllerComponent
-        },
-        {
-          path: '/controller',
-          component: ControllerComponent
-        },
-        {
-          path: '/c',
-          component: ControllerComponent
-        }
-      );
+      routes.push({
+        path: '/controller/:linkId',
+        component: ControllerComponent
+      });
     }
   },
 

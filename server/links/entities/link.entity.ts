@@ -27,6 +27,11 @@ export class Link {
     };
   }
 
+  broadcast(event: string, ...args: any[]): void {
+    this.board?.emit?.(event, ...args);
+    this.controller?.emit?.(event, ...args);
+  }
+
   get isInitialized(): boolean {
     return !!this.board;
   }

@@ -16,7 +16,17 @@ export class LinksService {
     const link = new Link(board);
     this.links.set(link.id, link);
     socket.join(link.id);
+
+    socket.on('disconnect', () => this.destroy(link.id));
+
     return link.toClient();
+  }
+
+  destroy(linkId: LinkId): void {
+    const link = this.links.get(linkId);
+    if (!link) return;
+    this.links.delete(linkId);
+    link.broadcast('destroy');
   }
 
   validate(linkId: LinkId): boolean {
@@ -30,6 +40,8 @@ export class LinksService {
 
     link.controller = new ControllerDevice(socket);
     socket.join(link.id);
+
+    socket.on('disconnect', () => this.destroy(link.id));
 
     socket.broadcast.to(link.id).emit('link-joined', link.toClient());
     return link.toClient();
