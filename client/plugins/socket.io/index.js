@@ -14,3 +14,5 @@ if (!Vue.__socket__) {
   Vue.__socket__ = true;
   Vue.mixin(mixin); // Set up your mixin then
 }
+
+export * from './decorators';

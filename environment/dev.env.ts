@@ -15,5 +15,6 @@ export default {
       host: 'localhost',
       port: clientPort
     }
-  })
+  }),
+  baseURL: 'http://ethans-mac.local:3000'
 } as Environment;

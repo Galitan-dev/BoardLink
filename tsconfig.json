@@ -15,7 +15,9 @@
     "paths": {
       "~/*": ["./*"],
       "@/*": ["./*"],
-      "types/*": ["./client/types/*"]
+      "types/*": ["./client/types/*"],
+      "plugins/*": ["./client/plugins/*"],
+      "env": ["./environment"]
     },
     "types": ["@nuxt/types", "@nuxtjs/axios", "@types/node"]
   },

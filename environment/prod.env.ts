@@ -18,5 +18,6 @@ export default {
       host: '0.0.0.0',
       port: clientPort
     }
-  })
+  }),
+  baseURL: 'https://boardlink.ethanwtr.ml'
 } as Environment;

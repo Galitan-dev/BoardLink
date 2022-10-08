@@ -36,7 +36,7 @@
 <script lang="ts">
 import { Socket } from 'socket.io-client';
 import { Component, Vue } from 'nuxt-property-decorator';
-import { SocketListener } from '../plugins/socket.io/decorators';
+import { SocketListener } from 'plugins/socket.io';
 
 @Component
 export default class Index extends Vue {
