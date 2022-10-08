@@ -35,6 +35,11 @@ export default class Board extends Vue {
   }
 
   @SocketListener
+  async onDisconnect() {
+    await this.onDestroy();
+  }
+
+  @SocketListener
   onLinkJoined(link: Link) {
     this.link = link;
   }

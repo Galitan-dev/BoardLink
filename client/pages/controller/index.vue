@@ -33,10 +33,15 @@ export default class Controller extends Vue {
     await this.$router.push('/controller/link');
   }
 
+  @SocketListener
+  async onDisconnect() {
+    await this.onDestroy();
+  }
+
   async mounted() {
     const linkId: string = this.$route.params.linkId;
 
-    if (!linkId || !(await this.$axios.get('/links/validate?id=' + linkId)))
+    if (!linkId || !(await this.$axios.$get('/links/validate?id=' + linkId)))
       return await this.$router.push('/controller/link');
 
     window.history.replaceState(null, '', '/controller');
