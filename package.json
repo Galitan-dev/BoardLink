@@ -71,7 +71,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^9.6.0",
     "husky": "^8.0.1",
-    "lint-staged": "^12.1.2",
+    "lint-staged": "^13.1.1",
     "prettier": "^2.3.2",
     "raw-loader": "^4.0.2"
   },
